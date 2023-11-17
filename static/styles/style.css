@@ -8,3 +8,12 @@
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }  
+
+
+
+/* Add this to your existing CSS file or create a new one */
+.bg-blue {
+  background-color: #8aaec5; /* Choose your preferred shade of blue */
+}
+
+
