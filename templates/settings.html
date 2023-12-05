@@ -53,7 +53,6 @@
       </ul>
     </div>
   </nav>
-
   <!-- Main Content -->
   <div class="container-fluid">
     <div class="row">
@@ -63,7 +62,7 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#" style="color: white; margin-bottom: 10px; margin-top: 10px;"><img src="/static/icons8-bell-service-64.png" alt="Profile Photo" width="30">
+          <a class="nav-link active" href="{{ url_for('dashboard') }}" style="color: white; margin-bottom: 10px; margin-top: 10px;"><img src="/static/icons8-bell-service-64.png" alt="Profile Photo" width="30">
             Dashboard
           </a>
         </li>
@@ -80,101 +79,60 @@
       </ul>
     </div>
   </nav>
-  
 
-     <!-- Main Content Area -->
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+  <!-- Main Content Area -->
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2" style= "color: #1b334d;  font-weight: bold;">Dashboard</h1>
+      <h1 class="h2" style="color: #1b334d;  font-weight: bold;">Dashboard</h1>
     </div>
-  
-    <!-- Two Cards -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" style= "color: #1b334d;  font-weight: bold;">People Waiting</h5>
-                <p class="card-text">Number of people waiting: <strong>42</strong></p>
-          
-                <!-- Image on the right -->
-                <img src="/static/icons8-graph-48.png" alt="Waiting Image" class="img-fluid" style="float: right; max-width: 100px; max-height: 100px;">
-              </div>
-            </div>
-          </div>
-          
-  
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title" style= "color: #1b334d;  font-weight: bold;">People Served</h5>
-            <p class="card-text">Number of people served: <strong>129</strong></p>
 
-            <img src="/static/icons8-graph-48.png" alt="Waiting Image" class="img-fluid" style="float: right; max-width: 100px; max-height: 100px;">
+    <!-- Form for Organization Services -->
+    <form method="post" action="/settings">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">*Service</label>
+            <input type="text" class="form-control" id="service" name="service" placeholder="Health care" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Service Description</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="All queues with regards to health care belong to this group" required>
           </div>
         </div>
-      </div>
-    </div>
-
-
-  <!-- Large Card -->
-  <div class="card mt-4 text-center">
-    <div class="card-body">
-      <h5 class="card-title" style= "color: #1b334d;  font-weight: bold;">Current Serving</h5>
-      <p class="card-text">Ticket Queue Number: <strong>32</strong></p>
-      <p class="card-text">Duration: <strong>15 minutes</strong></p>
-      <button type="button" class="btn btn-success">Complete</button>
-    </div>
-  </div>
-  
-    <!-- Table -->
-  <div class="mt-4 table-responsive">
-    <h2 style="color: #1b334d; font-weight: bold;">Customer Queue</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Queue Number</th>
-          <th scope="col">Customer</th>
-          <th scope="col">Service Type</th>
-          <th scope="col">Status</th>
-          <th scope="col">Time Passed</th>
-          <th scope="col">Accept</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>33</td>
-          <td>Thandokazi</td>
-          <td>Health Care</td>
-          <td>Queuing</td>
-          <td>3 hours</td>
-          <td><button type="button" class="btn btn-success">Accept</button></td>
-        </tr>
-        <tr>
-          <td>34</td>
-          <td>Hlomla</td>
-          <td>Accounting Services</td>
-          <td>Queuing</td>
-          <td>1 hours</td>
-          <td><button type="button" class="btn btn-success">Accept</button></td>
-        </tr>
-        <tr>
-          <td>35</td>
-          <td>Yonga</td>
-          <td>Customer Care</td>
-          <td>Queuing</td>
-          <td>1 hours</td>
-          <td><button type="button" class="btn btn-success">Accept</button></td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
-  </div>
-  </main>
+        <div class="form-group">
+          <label for="inputAddress">Start time</label>
+          <input type="time" class="form-control" id="time" name="start_time" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">End time</label>
+          <input type="time" class="form-control" id="time" name="end_time" placeholder="">
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Satisfied?
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create service</button>
+      </form>
   
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ <!-- Bootstrap JS and dependencies -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
-</html>

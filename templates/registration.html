@@ -42,6 +42,17 @@
                     <h4>Register</h4>
                 </div>
                 <div class="card-body">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
                     <form method="post" action="/register">
                         <div class="form-group">
                             <label for="username">Username:</label>

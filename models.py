@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Time, Text
 from flask_login import UserMixin
+
 
 db = SQLAlchemy()
 
@@ -25,6 +27,9 @@ class Admin(db.Model, UserMixin):
 class Service(db.Model):
     service_id = db.Column(db.Integer, primary_key=True)
     service_name = db.Column(db.String(50), nullable=False)
+    description = db.Column(Text)  # Use Text type for long text
+    start_time = db.Column(Time)
+    end_time = db.Column(Time)
     org_id = db.Column(db.Integer, db.ForeignKey('organisation.org_id'), nullable=False)
     queues = db.relationship('Queue', backref='service', lazy=True)
 

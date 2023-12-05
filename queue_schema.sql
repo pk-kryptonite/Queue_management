@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS organisation (
 -- Table for storing admin information
 CREATE TABLE IF NOT EXISTS admins (
     admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,  -- Use appropriate hashing for real-world scenarios
     profile_picture VARCHAR(255),     -- Path to profile picture
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS admins (
 CREATE TABLE IF NOT EXISTS services (
     service_id INT AUTO_INCREMENT PRIMARY KEY,
     service_name VARCHAR(50) NOT NULL,
+    description TEXT, 
+    start_time TIMESTAMP,
+    endtime TIMESTAMP,
     org_id INT,
     FOREIGN KEY (org_id) REFERENCES organisation(org_id)
 );
