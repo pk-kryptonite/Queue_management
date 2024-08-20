@@ -27,7 +27,7 @@ Instructions on how to install and set up the project.
 npm install
 # or if you're using Python
 pip install -r requirements.txt
-
+```
 ## License
 
 This project is licensed under the GNU General Public License v3.0. You may not use this file except in compliance with the License. You may obtain a copy of the License at:
