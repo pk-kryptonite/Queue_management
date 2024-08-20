@@ -24,8 +24,6 @@ Instructions on how to install and set up the project.
 ```bash
 
 # Install dependencies
-npm install
-# or if you're using Python
 pip install -r requirements.txt
 ```
 ## License
