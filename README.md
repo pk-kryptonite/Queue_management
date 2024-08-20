@@ -10,7 +10,7 @@ This is a simple digital queue system. The purpose of this system is to help org
 
 ## Tech Stack
 
-List the technologies used in the project.
+The technologies used in the project.
 
 - **Frontend:** Javascript, HTML, CSS
 - **Backend:** Flask, Python, SQLAlchemy
